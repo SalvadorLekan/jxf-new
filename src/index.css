@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply hover:opacity-90 disabled:opacity-50 flex items-center gap-3 px-4 py-2 rounded-md focus:outline-none  focus:ring-2;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  @apply bg-blue-200;
+}
+
+.arrow {
+  @apply absolute top-0 bottom-0 flex justify-center z-10 items-center w-12 text-white focus:outline-none focus:ring-1;
+}
+.arrow > svg {
+  @apply transform scale-150;
+}
+
+.arrow.back {
+  @apply left-0;
+}
+
+.arrow.next {
+  @apply right-0;
+}
+
+.carousel-image {
+  @apply absolute opacity-0 transform scale-50 transition-all duration-75;
+}
+
+.carousel-image.active {
+  @apply opacity-100 scale-100;
+}
+
+h4 {
+  @apply font-bold text-lg py-2;
+}
+
+.product-contact a.btn {
+  @apply absolute right-0;
+}
+
+.product-contact:focus-within a.btn {
+  @apply static;
+}
+
+.product-contact > * {
+  @apply flex-auto;
+}
+
+.cart-list:empty::before {
+  content: "Cart Is Empty";
+  @apply absolute text-lg text-white font-bold left-0 right-0 text-center;
+}
+
+.shop-item-list:empty::before {
+  content: "No Item In Shop";
+  @apply absolute text-lg text-blue-800 font-bold left-0 right-0 text-center;
 }
