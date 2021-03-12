@@ -20,6 +20,8 @@ function Carousel({ imageList }: { imageList: string[] }) {
     return (
       <CarouselDiv>
         <img
+          width={150}
+          height={225}
           src={PlaceHolder}
           alt="shopping bag"
           style={{ maxHeight: "80%", maxWidth: "80%" }}
@@ -41,6 +43,7 @@ function Carousel({ imageList }: { imageList: string[] }) {
       <>
         {imageList.map((image, ind) => (
           <img
+            loading="lazy"
             key={ind}
             src={image}
             className={

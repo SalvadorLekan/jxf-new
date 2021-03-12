@@ -16,6 +16,8 @@ function Header() {
         className="flex items-center gap-3"
       >
         <img
+          width={36}
+          height={36}
           className="h-9 hidden sm:inline-block"
           src="/logo192.png"
           alt="logo"
@@ -31,9 +33,7 @@ function Header() {
       >
         &#9776;
       </button> */}
-      <nav
-        className={`w-full hidden top-0 transition-all sm:bg-transparent justify-start items-start sm:justify-end sm:flex gap-4 sm:w-auto flex-grow rounded-md h-0 flex-row overflow-hidden sm:h-auto bg-indigo-200`}
-      >
+      <nav className="hidden sm:flex">
         <button
           onClick={() => dispatch(showCart())}
           className="btn bg-purple-800 text-white"

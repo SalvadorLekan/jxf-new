@@ -12,10 +12,17 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const { shop } = useParams() as IParams;
+
   const dispatch = useDispatch();
+
   const { offset: cartOffset, cartItems } = useSelector(
     (state: RootState) => state.cartReducer
   );
+
+  const currency = useSelector(
+    (state: RootState) => state.shopReducer.currency
+  );
+
   const [items, setItems] = useState(Array<string>());
 
   const [price, setPrice] = useState(0);
@@ -52,7 +59,7 @@ function Cart() {
             <p>Close</p>
           </button>
           <b className="btn bg-white text-blue-800">
-            <span>NGN</span>
+            <span>{currency}</span>
             <span>{price}.00</span>
           </b>
         </div>

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const fetchShopData = createAsyncThunk(
   "fetchShopData",
@@ -15,6 +15,9 @@ let initialState = {
   loading: true,
   shop: null as Shop | null,
   error: false,
+  hasContact: false,
+  hasSocial: false,
+  currency: "NGN",
 };
 
 const shopSlice = createSlice({
@@ -22,9 +25,18 @@ const shopSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchShopData.fulfilled.type](state, action) {
+    [fetchShopData.fulfilled.type](state, { payload }: PayloadAction<Shop>) {
       state.loading = false;
-      state.shop = action.payload;
+      state.shop = payload;
+      if (payload.data) {
+        const { email, phoneNumber, whatsapp } = payload.data.contact;
+        const { facebook, instagram, twitter } = payload.data.socialMedia;
+
+        state.hasContact = Boolean(email || phoneNumber || whatsapp);
+        state.hasSocial = Boolean(facebook || instagram || twitter);
+
+        state.currency = payload.data.storeCurrency;
+      }
     },
     [fetchShopData.rejected.type](state) {
       state.loading = false;

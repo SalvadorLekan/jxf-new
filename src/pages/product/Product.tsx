@@ -135,7 +135,7 @@ function Product() {
                     <AiOutlineMail />
                     Email
                   </a>
-                  <a href="/" className="btn bg-yellow-600">
+                  <a href="/" className="btn bg-yellow-400">
                     <AiOutlinePhone />
                     Call Us
                   </a>

@@ -13,25 +13,33 @@ interface ShopItem {
   isQuantityLimited: boolean;
 }
 
-interface ShopData {
+type SocialMedia = {
+  facebook: string | null;
+  instagram: string | null;
+  twitter: string | null;
+};
+
+type ShopContact = {
+  whatsapp: string | null;
+  phoneNumber: string | null;
+  email: string | null;
+};
+
+type ShopData = {
   id: number;
   storeName: string;
   storeCurrency: string;
   storeSlug: string;
   welcomeMessage: string;
-  contact: {
-    whatsapp: string;
-    phoneNumber: string;
-    email: string;
-  };
-  socialMedia?: { [key: string]: string };
+  contact: ShopContact;
+  socialMedia: SocialMedia;
   business: {
     businessId: number;
     businessDescription: string;
     businessName: string;
   };
   products: ShopItem[];
-}
+};
 
 interface Shop {
   status: boolean;

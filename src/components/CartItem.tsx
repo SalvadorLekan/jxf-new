@@ -1,7 +1,7 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import { GoDash, GoPlus } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { RootState } from "../toolkit";
 import {
   decreaseItem,
@@ -15,6 +15,9 @@ function CartItem({ item }: { item: string }) {
   const { shop } = useParams() as IParams;
   const cartData = useSelector(
     (state: RootState) => state.cartReducer.cartItems[shop][item]
+  );
+  const currency = useSelector(
+    (state: RootState) => state.shopReducer.currency
   );
 
   const dispatch = useDispatch();
@@ -49,15 +52,17 @@ function CartItem({ item }: { item: string }) {
           </div>
         )}
         <div className="">
-          <b>NGN {shopItem.productPrice}</b>
+          <b>
+            {currency} {shopItem.productPrice}
+          </b>
         </div>
       </div>
       <div className="h-full w-24 flex-shrink-0 flex-col flex items-end justify-between py-4 pr-4 rounded-md bg-blue-500 rounded-l-none">
-        <div className="h-24 bg-blue-200 flex justify-center items-center overflow-hidden rounded-lg w-full">
+        <div className="h-20 bg-blue-200 flex justify-center items-center overflow-hidden rounded-lg w-full">
           <img
             src={shopItem.productMedia[0] || sadCart}
-            alt=""
-            className="h-20"
+            alt={shopItem.productName}
+            className="h-16"
           />
         </div>
         <button

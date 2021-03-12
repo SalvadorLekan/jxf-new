@@ -22,7 +22,7 @@ function Shop() {
         </div>
       ) : null}
       <Cart />
-      <main className="shop-item-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 container gap-y-6 xl:gap-y-16 mx-auto">
+      <main className="shop-item-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 container gap-y-6 mx-auto">
         {shopItems.map((item) => (
           <div className="" key={item.id}>
             <ItemCard itemDetails={item} />
